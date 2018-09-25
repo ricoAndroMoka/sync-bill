@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  outlet_id: 
+  business_id: 
+  token: 
+  type: 
+
+two:
+  outlet_id: 
+  business_id: 
+  token: 
+  type: 
