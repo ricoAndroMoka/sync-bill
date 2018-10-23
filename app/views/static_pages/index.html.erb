@@ -1,12 +1,16 @@
+<h3>Last 50 records</h3>
+
 <table border="1">
 	<tr>
+		<th>No</th>
 		<th>Outlet</th>
 		<th>Business</th>
 		<th>Token</th>
 		<th>Type</th>
 	</tr>
-	<% @ed.each do |ed| %>
+	<% @ed.each.with_index(1) do |ed, index| %>
 		<tr>
+			<td><%= index %></td>
 			<td>outlet_id: <%= ed.outlet_id %></td>
 			<td>business_id: <%= ed.business_id %></td>
 			<td>token: <%= ed.token %></td>
