@@ -1,7 +1,7 @@
 class StaticPagesController < ApplicationController
 	skip_before_action :verify_authenticity_token
 	def index
-		@ed = EventDisplay.all
+		@ed = EventDisplay.last(50)
 	end
 
 	def target
