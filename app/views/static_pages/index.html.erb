@@ -2,19 +2,26 @@
 
 <table border="1">
 	<tr>
-		<th>No</th>
+		<th>ID</th>
 		<th>Outlet</th>
 		<th>Business</th>
 		<th>Token</th>
 		<th>Type</th>
+		<th>Created at</th>
+		<th>Updated at</th>
 	</tr>
-	<% @ed.each.with_index(1) do |ed, index| %>
+	<% @ed.each do |ed| %>
 		<tr>
-			<td><%= index %></td>
-			<td>outlet_id: <%= ed.outlet_id %></td>
-			<td>business_id: <%= ed.business_id %></td>
-			<td>token: <%= ed.token %></td>
-			<td>type: <%= ed.type %></td>
+			<td><%= ed.id %></td>
+			<td><%= ed.outlet_id %></td>
+			<td><%= ed.business_id %></td>
+			<td><%= ed.token %></td>
+			<td><%= ed.type %></td>
+			<td><%= ed.created_at %></td>
+			<td><%= ed.updated_at %></td>
 		</tr>
 	<% end %>
 </table>
+<br><br>
+
+<%= will_paginate @posts %>
