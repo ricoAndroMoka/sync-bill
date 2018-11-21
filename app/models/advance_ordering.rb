@@ -1,0 +1,2 @@
+class AdvanceOrdering < ApplicationRecord
+end
