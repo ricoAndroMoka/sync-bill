@@ -10,18 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_21_064324) do
+ActiveRecord::Schema.define(version: 2018_11_22_082551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "advance_orderings", force: :cascade do |t|
     t.integer "outlet_id"
-    t.integer "business_id"
-    t.string "event_type"
+    t.integer "application_order_id"
+    t.string "event_name"
     t.text "additional_data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "token"
+    t.string "token_created_at"
+    t.string "token_expired_at"
   end
 
   create_table "event_displays", force: :cascade do |t|
