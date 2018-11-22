@@ -6,21 +6,25 @@
 	<tr>
 		<th>ID</th>
 		<th>Outlet</th>
-		<th>Business</th>
-		<th>Event Type</th>
-		<th>Additional data</th>
+		<th>Application Order ID</th>
+		<th>Event Name</th>
 		<th>Created at</th>
 		<th>Updated at</th>
+		<th>Token</th>
+		<th>Token created at</th>
+		<th>Token expired at</th>
 	</tr>
 	<% @ao.each do |ao| %>
 		<tr>
 			<td><%= ao.id %></td>
 			<td><%= ao.outlet_id %></td>
-			<td><%= ao.business_id %></td>
-			<td><%= ao.event_type %></td>
-			<td><%= ao.additional_data %></td>
+			<td><%= ao.application_order_id %></td>
+			<td><%= ao.event_name %></td>
 			<td><%= ao.created_at %></td>
 			<td><%= ao.updated_at %></td>
+			<td><%= ao.token %></td>
+			<td><%= ao.token_created_at %></td>
+			<td><%= ao.token_expired_at %></td>
 		</tr>
 	<% end %>
 </table>
