@@ -1,6 +1,6 @@
 <%= render partial: 'layouts/menu' %>
 
-<h3>Kitchen display records</h3>
+<h3>Event display records</h3>
 
 <table border="1">
 	<tr>
@@ -8,7 +8,7 @@
 		<th>Outlet</th>
 		<th>Business</th>
 		<th>Token</th>
-		<th>Type</th>
+		<th>Event name</th>
 		<th>Created at</th>
 		<th>Updated at</th>
 	</tr>
@@ -18,7 +18,7 @@
 			<td><%= ed.outlet_id %></td>
 			<td><%= ed.business_id %></td>
 			<td><%= ed.token %></td>
-			<td><%= ed.type %></td>
+			<td><%= ed.event_name %></td>
 			<td><%= ed.created_at %></td>
 			<td><%= ed.updated_at %></td>
 		</tr>

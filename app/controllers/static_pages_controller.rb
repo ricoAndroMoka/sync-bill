@@ -9,7 +9,7 @@ class StaticPagesController < ApplicationController
 	end
 
 	def target
-		if params["data"]["event_type"] == "a"
+		if params["event_type"] == "advance_ordering"
 			target_advance_ordering
 		else
 			ed = EventDisplay.create(ed_params)
@@ -23,16 +23,18 @@ class StaticPagesController < ApplicationController
 		ao_params[:event_type] = 'advance ordering' if ao_params[:event_type].blank?
 		ao = AdvanceOrdering.create(ao_params)
 
-		data = params["data"]
 		token = params["token"]
 		ao = AdvanceOrdering.new
 
-		ao.outlet_id = data["outlet_id"]
-		ao.application_order_id = data["application_order_id"]
 		ao.event_name = params["event_name"]
-		ao.token = token["token"]
-		ao.token_created_at = token["created_at"]
-		ao.token_expired_at = token["expired_at"]
+		ao.outlet_id = params["outlet_id"]
+		ao.application_order_id = params["application_order_id"]
+
+		if token.present?
+			ao.token = token["token"]
+			ao.token_created_at = token["created_at"]
+			ao.token_expired_at = token["expired_at"]
+		end
 
 		if ao.save
 			render json: ao
@@ -42,11 +44,11 @@ class StaticPagesController < ApplicationController
 	end
 
 	def ed_params
-		params.permit(:outlet_id, :business_id, :token, :type)
+		params.permit(:outlet_id, :business_id, :token, :event_name)
 	end
 
 	def ao_params
-		params.permit(:outlet_id, :business_id, :event_type, :additional_data)
+		params.permit(:outlet_id, :business_id, :event_name, :additional_data)
 	end
 
 end
