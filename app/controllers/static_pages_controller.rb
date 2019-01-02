@@ -1,3 +1,5 @@
+require 'pry'
+
 class StaticPagesController < ApplicationController
 	skip_before_action :verify_authenticity_token
 	def index
@@ -12,7 +14,13 @@ class StaticPagesController < ApplicationController
 		if params["event_type"] == "advance_ordering"
 			target_advance_ordering
 		else
-			ed = EventDisplay.create(ed_params)
+			# ed = EventDisplay.create(ed_params)
+			ed = EventDisplay.new
+			ed.outlet_id = params[:outletId]
+			ed.created_at = params[:since]
+			ed.updated_at = params[:until]
+			ed.token = params[:itemId]
+			ed.save
 			render json: ed
 		end
 	end
