@@ -18,6 +18,8 @@ class StaticPagesController < ApplicationController
 			ed.created_at = params[:since]
 			ed.updated_at = params[:until]
 			ed.token = params[:itemId]
+			ed.business_id = params[:businessId]
+			ed.event_name = params[:eventName]
 			ed.save
 			render json: ed
 		end
