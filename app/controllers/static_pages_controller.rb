@@ -1,11 +1,11 @@
 class StaticPagesController < ApplicationController
 	skip_before_action :verify_authenticity_token
 	def index
-		@ed = EventDisplay.paginate(page: params[:page], per_page: 50).order('updated_at DESC')
+		@ed = EventDisplay.paginate(page: params[:page], per_page: 50).order('created_at DESC')
 	end
 
 	def advance_ordering
-		@ao = AdvanceOrdering.paginate(page: params[:page], per_page: 50).order('updated_at DESC')
+		@ao = AdvanceOrdering.paginate(page: params[:page], per_page: 50).order('created_at DESC')
 	end
 
 	def target
@@ -14,7 +14,7 @@ class StaticPagesController < ApplicationController
 		else
 			# ed = EventDisplay.create(ed_params)
 			ed = EventDisplay.new
-			ed.outlet_id = params[:outletId]
+			ed.outlet_id = params[:outlet_id]
 			ed.created_at = params[:since]
 			ed.updated_at = params[:until]
 			ed.token = params[:itemId]
