@@ -15,11 +15,9 @@ class StaticPagesController < ApplicationController
 			# ed = EventDisplay.create(ed_params)
 			ed = EventDisplay.new
 			ed.outlet_id = params[:outlet_id]
-			ed.created_at = params[:since]
-			ed.updated_at = params[:until]
-			ed.token = params[:itemId]
-			ed.business_id = params[:businessId]
-			ed.event_name = params[:eventName]
+			ed.token = "since: #{params[:since]}, until: #{params[:until]}"
+			ed.business_id = params[:business_id]
+			ed.event_name = params[:event_name]
 			ed.save
 			render json: ed
 		end
