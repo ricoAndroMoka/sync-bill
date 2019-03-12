@@ -19,8 +19,10 @@ class StaticPagesController < ApplicationController
 			ed.business_id = params[:business_id]
 			ed.event_name = params[:event_name]
 			ed.save
-			render json: ed
+			# render json: ed.to_json
+			render nothing: true, status: 200
 		end
+		render nothing: true, status: 500
 	end
 
 	private
