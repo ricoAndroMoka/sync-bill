@@ -20,10 +20,12 @@ class StaticPagesController < ApplicationController
 				ed.business_id = params[:business_id]
 				ed.event_name = params[:event_name]
 				ed.save
-				render nothing: true, status: 200
+				# render nothing: true, status: 200
+				render json: ed, status: 200
 			end
 		rescue
-			render nothing: true, status: 500
+			# render nothing: true, status: 500
+			render json: {}, status: :internal_server_error
 		end
 	end
 
