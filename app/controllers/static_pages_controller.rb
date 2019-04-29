@@ -9,20 +9,35 @@ class StaticPagesController < ApplicationController
 	end
 
 	def target
-		if params["event_type"] == "advance_ordering"
-			target_advance_ordering
-		else
-			# ed = EventDisplay.create(ed_params)
-			ed = EventDisplay.new
-			ed.outlet_id = params[:outlet_id]
-			ed.token = "since: #{params[:since]}, until: #{params[:until]}"
-			ed.business_id = params[:business_id]
-			ed.event_name = params[:event_name]
-			ed.save
-			# render json: ed.to_json
-			render nothing: true, status: 200
+		begin
+			if params["event_type"] == "advance_ordering"
+				target_advance_ordering
+			else
+				# ed = EventDisplay.create(ed_params)
+				ed = EventDisplay.new
+				ed.outlet_id = params[:outlet_id]
+				ed.token = "since: #{params[:since]}, until: #{params[:until]}"
+				ed.business_id = params[:business_id]
+				ed.event_name = params[:event_name]
+				ed.save
+				render nothing: true, status: 200
+			end
+		rescue
+			render nothing: true, status: 500
 		end
-		render nothing: true, status: 500
+	end
+
+	def return_error
+		# raise 'Internal Server Error Test'
+		output = {
+      data: {},
+      meta: {
+        code: 500,
+        error_message:  exception.message.to_s,
+        error_type: exception.class.to_s
+      }
+    }
+    render json: output, status: :internal_server_error
 	end
 
 	private
