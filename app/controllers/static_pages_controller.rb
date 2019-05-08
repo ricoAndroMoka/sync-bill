@@ -9,24 +9,18 @@ class StaticPagesController < ApplicationController
 	end
 
 	def target
-		begin
-			if params["event_type"] == "advance_ordering"
-				target_advance_ordering
-			else
-				# ed = EventDisplay.create(ed_params)
-				ed = EventDisplay.new
-				ed.outlet_id = params[:outlet_id]
-				ed.token = "since: #{params[:since]}, until: #{params[:until]}"
-				ed.business_id = params[:business_id]
-				ed.event_name = params[:event_name]
-				ed.save
-				render nothing: true, status: 200
-				# render json: {}, status: 200
-				# render inline: ""
-			end
-		rescue
-			render nothing: true, status: 500
-			# render json: {}, status: :internal_server_error
+		if params["event_type"] == "advance_ordering"
+			target_advance_ordering
+		else
+			# ed = EventDisplay.create(ed_params)
+			ed = EventDisplay.new
+			ed.outlet_id = params[:outlet_id]
+			ed.token = "since: #{params[:since]}, until: #{params[:until]}"
+			ed.business_id = params[:business_id]
+			ed.event_name = params[:event_name]
+			ed.save
+			# render nothing: true, status: 200
+			render json: {message: 'success'}
 		end
 	end
 
@@ -36,8 +30,8 @@ class StaticPagesController < ApplicationController
       data: {},
       meta: {
         code: 500,
-        error_message:  exception.message.to_s,
-        error_type: exception.class.to_s
+        error_message:  'custom error message',
+        error_type: 'CustomErrorMessage'
       }
     }
     render json: output, status: :internal_server_error
