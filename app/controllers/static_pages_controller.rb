@@ -20,7 +20,7 @@ class StaticPagesController < ApplicationController
 			ed.event_name = params[:event_name]
 			ed.save
 			# render nothing: true, status: 200
-			render json: {message: 'success'}
+			render plain: 'success'
 		end
 	end
 
