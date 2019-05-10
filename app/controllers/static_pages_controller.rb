@@ -37,6 +37,18 @@ class StaticPagesController < ApplicationController
     render json: output, status: :internal_server_error
 	end
 
+	def return_success
+		if params[:delayed].present?
+			sleep 30
+		end
+
+		respond_to do |format|
+			format.html
+			format.json {render json: {message: 'success with json'}}
+		end
+	end
+
+
 	private
 
 	def target_advance_ordering

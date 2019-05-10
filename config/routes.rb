@@ -8,4 +8,7 @@ Rails.application.routes.draw do
   get '/advance_ordering', to: 'static_pages#advance_ordering'
   post '/target_advance_ordering', to: 'static_pages#target_advance_ordering'
 
+
+  get	'return_success', to: 'static_pages#return_success'
+
 end
