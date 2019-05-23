@@ -39,7 +39,7 @@ class StaticPagesController < ApplicationController
 
 	def return_success
 		if params[:delayed].present?
-			sleep params[:delayed]
+			sleep params[:delayed].to_i
 		end
 
 		respond_to do |format|
