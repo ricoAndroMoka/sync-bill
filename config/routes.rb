@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   post '/target_advance_ordering', to: 'static_pages#target_advance_ordering'
 
 
-  get	'return_success', to: 'static_pages#return_success'
+  post	'return_success', to: 'static_pages#return_success'
 
 end
