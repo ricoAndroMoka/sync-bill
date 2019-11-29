@@ -8,6 +8,10 @@ class StaticPagesController < ApplicationController
 		@ao = AdvanceOrdering.paginate(page: params[:page], per_page: 50).order('created_at DESC')
 	end
 
+	def subscriptions
+		@subs = Subscription.paginate(page: params[:page], per_page: 50).order('created_at DESC')
+	end
+
 	def target
 		if params["event_type"] == "advance_ordering"
 			target_advance_ordering
@@ -22,6 +26,18 @@ class StaticPagesController < ApplicationController
 			# render nothing: true, status: 200
 			render json: {message: 'success'}
 		end
+	end
+
+	def notify
+		# for subscriptions
+		subs = Subscription.new(
+			item_name: params[:name],
+			business_id: params[:business_id],
+			outlet_id: params[:outlet_id],
+			item_variants: params[:item_variants].to_json
+			)
+
+		render json: {message: 'success'}	if subs.save
 	end
 
 	def return_error

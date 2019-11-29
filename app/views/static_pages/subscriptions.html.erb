@@ -1,0 +1,29 @@
+<%= render partial: 'layouts/menu' %>
+
+<h3>Subscription records</h3>
+
+<table border="1">
+	<tr>
+		<th>ID</th>
+		<th>Outlet id</th>
+		<th>Business id</th>
+		<th>Item name</th>
+		<th>item variants</th>
+		<th>Created at</th>
+		<th>Updated at</th>
+	</tr>
+	<% @subs.each do |ao| %>
+		<tr>
+			<td><%= ao.id %></td>
+			<td><%= ao.outlet_id %></td>
+			<td><%= ao.business_id %></td>
+			<td><%= ao.item_name %></td>
+			<td><%= ao.item_variants %></td>
+			<td><%= ao.created_at %></td>
+			<td><%= ao.updated_at %></td>
+		</tr>
+	<% end %>
+</table>
+<br><br>
+
+<%= will_paginate @subs %>
